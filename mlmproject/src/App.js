@@ -11,7 +11,7 @@ export default function App() {
       Username:USERNAME,
       Password:PASSWORD
     }).then(res =>{
-      console.log(res)
+      console.log(res.data)
     })
     // console.log('clicked')
   }
