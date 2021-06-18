@@ -1,18 +1,20 @@
 const express = require('express')
 const Router = express.Router()
-const {User,Address,Company,Credentials,Phone} = require('../models')
+const {User,Address,Company,Credentials,Phone,Profile} = require('../models')
+// const models = require('../models')
 
 Router.get('/insert',(req,res)=>{
-    User.create({
-        Userid: 1,
-        Username:'waleed',
-        Email: 'firstavenue@gmail.com',
-    }).catch(err =>{
-        if(err){
-            console.log(err)
-        }
-    })
+    // User.create({
+    //     Userid: 1,
+    //     Username:'waleed',
+    //     Email: 'firstavenue@gmail.com',
+    // }).catch(err =>{
+    //     if(err){
+    //         console.log(err)
+    //     }
+    // })
     Address.create({
+        Userid: 1,
         Street:'5a2 4k churangee karachi',
         City: 'first avenue',
     }).catch(err =>{
@@ -21,6 +23,7 @@ Router.get('/insert',(req,res)=>{
         }
     })
     Company.create({
+        Userid: 1,
         Name:'my Own company',
         location:'mera apna ghar'
     }).catch(err =>{
@@ -35,9 +38,25 @@ Router.get('/insert',(req,res)=>{
     })
 
     Phone.create({
+        Userid: 1,
         tel: 012
     })
+    Profile.create({
+        // Userid: 1,
+        Username:'waleed'
+    }).catch(err =>{
+        err && err
+    })
     res.send('inserted')
+})
+
+
+Router.get('/all',(req,res)=>{
+        Credentials.findAll(
+            {
+        include:[Profile,Phone,Address,Company]
+    }
+    ).then(all => res.send(all))
 })
 
 Router.post('/login', (req, res) => {
