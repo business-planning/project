@@ -1,22 +1,33 @@
-module.exports = (sequelize, Datatypes) => {
-    const Address = sequelize.define("Address",{
+module.exports = (sequelize, DataTypes) => {
+    const Address = sequelize.define("Address", {
+        // Userid: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     validate: {
+        //         notEmpty: true
+        //     }
+        // },
         Street: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allownull: false,
             validate: {
                 notEmpty: true
             },
         },
         City: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allownull: false,
             validate: {
                 notEmpty: true
             }
         }
     });
-    {
-        tableName: 'Employees'
+    Address.associate = model => {
+        Address.belongsTo(model.Profile,{
+            foreignkey:{
+                allowNull:false
+            }
+        })
     }
     return Address
 }
