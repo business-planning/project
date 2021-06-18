@@ -1,10 +1,9 @@
-const Mysql = require('mysql')
+const Sequelize = require('sequelize');
 
-const db = Mysql.createConnection({
-    host:'localhost',
-    user: 'root',
-    password: '',
-    database:'waleeddb'
-})
+const db = new Sequelize('waleeddb', 'root', '', {
+  host: 'localhost',
+  dialect:'mysql' 
+});
+
 
 module.exports = db
