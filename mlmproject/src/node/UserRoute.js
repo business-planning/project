@@ -54,7 +54,7 @@ Router.get('/insert',(req,res)=>{
 Router.get('/all',(req,res)=>{
         Credentials.findAll(
             {
-        include:[Profile,Phone,Address,Company]
+        include:[Profile]
     }
     ).then(all => res.send(all))
 })
